@@ -1,0 +1,643 @@
+.dashboard {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Success Header */
+.successHeader {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.successIcon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--success-bg);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.successIcon svg {
+    width: 40px;
+    height: 40px;
+    color: var(--success);
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.3);
+    }
+
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px 10px rgba(16, 185, 129, 0.1);
+    }
+}
+
+.successTitle {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.successSubtitle {
+    color: var(--text-secondary);
+}
+
+/* Shield Score Section */
+.scoreSection {
+    margin-bottom: 2.5rem;
+}
+
+.sectionTitle {
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.scoreComparison {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.scoreCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.scoreLabel {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
+
+.scoreRing {
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+
+.scoreRing svg {
+    transform: rotate(-90deg);
+}
+
+.scoreBg {
+    fill: none;
+    stroke: var(--bg-tertiary);
+    stroke-width: 8;
+}
+
+.scoreProgress {
+    fill: none;
+    stroke-width: 8;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.5s ease;
+}
+
+.scoreRing.danger .scoreProgress {
+    stroke: var(--danger);
+}
+
+.scoreRing.success .scoreProgress {
+    stroke: var(--success);
+}
+
+.scoreValue {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.scoreStatus {
+    font-size: 0.8125rem;
+    font-weight: 500;
+}
+
+.scoreArrow {
+    font-size: 2rem;
+    color: var(--accent-primary);
+}
+
+/* Tabs */
+.tabs {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    padding: 0.25rem;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-full);
+}
+
+.tab {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.tab:hover {
+    color: var(--text-primary);
+}
+
+.tab.active {
+    background: var(--accent-gradient);
+    color: var(--bg-primary);
+}
+
+/* Tab Content */
+.tabContent {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-xl);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* AI-Buster Comparison (Split-Screen per PRD) */
+.splitScreen {
+    display: flex;
+    gap: 1rem;
+    align-items: stretch;
+}
+
+.imagePanel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.panelLabel {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.imageWrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+.imageWrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.aiOverlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.faceBox {
+    padding: 0.5rem 1rem;
+    background: rgba(239, 68, 68, 0.9);
+    color: white;
+    font-size: 0.75rem;
+    border-radius: var(--radius-md);
+    text-align: center;
+}
+
+.faceBox .confidence {
+    display: block;
+    font-weight: 600;
+}
+
+.aiOverlay.protected {
+    background: rgba(16, 185, 129, 0.2);
+}
+
+.protectedIcon {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(16, 185, 129, 0.3);
+    border-radius: 50%;
+}
+
+.protectedIcon svg {
+    width: 32px;
+    height: 32px;
+    color: var(--success);
+}
+
+.panelStatus {
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.divider {
+    width: 2px;
+    background: var(--border-color);
+    margin: 0 0.5rem;
+}
+
+.comparisonNote {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
+
+/* Noise Toggle View */
+.noiseView {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.noiseImage {
+    position: relative;
+    width: 280px;
+    height: 280px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+.noiseImage img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.noiseOverlay {
+    position: absolute;
+    inset: 0;
+    mix-blend-mode: difference;
+}
+
+.noisePattern {
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(45deg,
+            rgba(0, 217, 255, 0.3),
+            rgba(139, 92, 246, 0.3) 2px,
+            transparent 2px,
+            transparent 8px);
+    animation: noiseShift 0.5s linear infinite;
+}
+
+@keyframes noiseShift {
+    to {
+        transform: translateX(8px);
+    }
+}
+
+.noiseControls {
+    text-align: center;
+}
+
+.toggleBtn {
+    padding: 0.75rem 1.5rem;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    font-weight: 500;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: border-color var(--transition-fast), background var(--transition-fast);
+}
+
+.toggleBtn:hover,
+.toggleBtn.active {
+    border-color: var(--accent-primary);
+    background: rgba(0, 217, 255, 0.1);
+}
+
+.noiseInfo {
+    margin-top: 0.75rem;
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    max-width: 400px;
+}
+
+/* Stress Test View */
+.stressView {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.stressImage {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+.stressImage img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.scanAnimation {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+}
+
+.scanLine {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+    animation: scan 1s linear infinite;
+}
+
+@keyframes scan {
+    0% {
+        top: -3px;
+    }
+
+    100% {
+        top: 100%;
+    }
+}
+
+.stressBtn {
+    padding: 1rem 2rem;
+    background: var(--accent-gradient);
+    color: var(--bg-primary);
+    font-weight: 600;
+    border: none;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.stressBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 217, 255, 0.3);
+}
+
+.stressRunning {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--border-color);
+    border-top-color: var(--accent-primary);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.stressResult {
+    text-align: center;
+    padding: 1.5rem;
+    background: var(--success-bg);
+    border-radius: var(--radius-lg);
+}
+
+.resultIcon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.stressResult h4 {
+    font-size: 1.125rem;
+    color: var(--success);
+    margin-bottom: 0.5rem;
+}
+
+.stressResult p {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+.retryBtn {
+    padding: 0.5rem 1rem;
+    background: transparent;
+    border: 1px solid var(--success);
+    color: var(--success);
+    font-size: 0.875rem;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+}
+
+/* Download Section */
+.downloadSection {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    padding: 1.5rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-xl);
+}
+
+.badgePreview h4 {
+    font-size: 0.9375rem;
+    margin-bottom: 0.75rem;
+}
+
+.badgeToggle {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.switch {
+    position: relative;
+    width: 44px;
+    height: 24px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    inset: 0;
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: background var(--transition-fast);
+}
+
+.slider::before {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    left: 3px;
+    top: 3px;
+    background: var(--text-primary);
+    border-radius: 50%;
+    transition: transform var(--transition-fast);
+}
+
+.switch input:checked+.slider {
+    background: var(--accent-primary);
+}
+
+.switch input:checked+.slider::before {
+    transform: translateX(20px);
+}
+
+.previewWithBadge {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+.previewWithBadge img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cloakBadge {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    width: 24px;
+    height: 24px;
+    background: rgba(0, 217, 255, 0.9);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cloakBadge svg {
+    width: 16px;
+    height: 16px;
+    color: white;
+}
+
+.downloadActions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.downloadBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    background: var(--accent-gradient);
+    color: var(--bg-primary);
+    font-weight: 600;
+    border: none;
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.downloadBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 217, 255, 0.3);
+}
+
+.newPhotoBtn {
+    padding: 0.875rem;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    font-weight: 500;
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: border-color var(--transition-fast);
+}
+
+.newPhotoBtn:hover {
+    border-color: var(--accent-primary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .scoreComparison {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .scoreArrow {
+        transform: rotate(90deg);
+    }
+
+    .splitScreen {
+        flex-direction: column;
+    }
+
+    .divider {
+        width: 100%;
+        height: 2px;
+        margin: 0.5rem 0;
+    }
+
+    .tabs {
+        flex-wrap: wrap;
+    }
+
+    .tab {
+        padding: 0.625rem 1rem;
+        font-size: 0.8125rem;
+    }
+
+    .downloadSection {
+        grid-template-columns: 1fr;
+    }
+}

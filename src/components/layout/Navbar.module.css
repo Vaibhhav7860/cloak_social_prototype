@@ -1,0 +1,228 @@
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 1rem 0;
+    transition: background var(--transition-base), box-shadow var(--transition-base);
+}
+
+.header.scrolled {
+    background: rgba(10, 10, 15, 0.95);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+/* Logo */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--text-primary);
+}
+
+.logoIcon {
+    width: 36px;
+    height: 36px;
+}
+
+.logoIcon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.logoText {
+    letter-spacing: -0.02em;
+}
+
+.logoAccent {
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Navigation Links */
+.navLinks {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.navLinks li a {
+    color: var(--text-secondary);
+    font-weight: 500;
+    transition: color var(--transition-fast);
+    position: relative;
+}
+
+.navLinks li a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent-gradient);
+    transition: width var(--transition-base);
+}
+
+.navLinks li a:hover {
+    color: var(--text-primary);
+}
+
+.navLinks li a:hover::after {
+    width: 100%;
+}
+
+/* Actions */
+.navActions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.loginBtn {
+    padding: 0.5rem 1rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    transition: color var(--transition-fast);
+}
+
+.loginBtn:hover {
+    color: var(--text-primary);
+}
+
+.ctaBtn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1.25rem;
+    background: var(--accent-gradient);
+    color: var(--bg-primary);
+    font-weight: 600;
+    border-radius: var(--radius-full);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.ctaBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 217, 255, 0.3);
+}
+
+.ctaBtnIcon {
+    font-size: 1rem;
+}
+
+/* Mobile Menu Button */
+.mobileMenuBtn {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 32px;
+    height: 32px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+}
+
+.mobileMenuBtn span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--text-primary);
+    border-radius: 2px;
+    transition: transform var(--transition-base), opacity var(--transition-base);
+}
+
+.mobileMenuBtn.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.mobileMenuBtn.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.mobileMenuBtn.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Mobile Menu */
+.mobileMenu {
+    display: none;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--bg-primary);
+    padding: 2rem;
+    transform: translateX(100%);
+    transition: transform var(--transition-base);
+}
+
+.mobileMenu.open {
+    transform: translateX(0);
+}
+
+.mobileNavLinks {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.mobileNavLinks li a {
+    display: block;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    transition: color var(--transition-fast);
+}
+
+.mobileNavLinks li a:hover {
+    color: var(--text-primary);
+}
+
+.mobileCta {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    background: var(--accent-gradient);
+    color: var(--bg-primary);
+    font-weight: 600;
+    font-size: 1.125rem;
+    text-align: center;
+    border-radius: var(--radius-lg);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+
+    .navLinks,
+    .navActions {
+        display: none;
+    }
+
+    .mobileMenuBtn,
+    .mobileMenu {
+        display: flex;
+    }
+
+    .mobileMenu {
+        flex-direction: column;
+    }
+}

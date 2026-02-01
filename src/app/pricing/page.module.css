@@ -1,0 +1,344 @@
+.main {
+    min-height: 100vh;
+    padding: 8rem 0 4rem;
+}
+
+/* Header */
+.header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 4rem;
+}
+
+.eyebrow {
+    display: inline-block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--accent-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+}
+
+.title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.subtitle {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+}
+
+/* Pricing Grid */
+.pricingGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 5rem;
+}
+
+.pricingCard {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-xl);
+    transition: transform var(--transition-base), border-color var(--transition-base);
+}
+
+.pricingCard:hover {
+    transform: translateY(-4px);
+    border-color: rgba(0, 217, 255, 0.3);
+}
+
+.pricingCard.popular {
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 40px rgba(0, 217, 255, 0.1);
+}
+
+.popularBadge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.375rem 1rem;
+    background: var(--accent-gradient);
+    color: var(--bg-primary);
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: var(--radius-full);
+    white-space: nowrap;
+}
+
+.cardHeader {
+    margin-bottom: 1.5rem;
+}
+
+.planName {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.375rem;
+}
+
+.planDescription {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+}
+
+.priceWrapper {
+    margin-bottom: 0.75rem;
+}
+
+.price {
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.period {
+    font-size: 1rem;
+    color: var(--text-muted);
+}
+
+.coinsIncluded {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+}
+
+.coinIcon {
+    font-size: 1.125rem;
+}
+
+.featureList {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.featureList li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.checkIcon {
+    color: var(--success);
+    flex-shrink: 0;
+}
+
+.ctaBtn {
+    display: block;
+    width: 100%;
+    padding: 0.875rem;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    font-weight: 600;
+    text-align: center;
+    border-radius: var(--radius-lg);
+    transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+
+.ctaBtn:hover {
+    border-color: var(--accent-primary);
+    background: rgba(0, 217, 255, 0.05);
+}
+
+.ctaBtn.primary {
+    background: var(--accent-gradient);
+    border: none;
+    color: var(--bg-primary);
+}
+
+.ctaBtn.primary:hover {
+    box-shadow: 0 8px 25px rgba(0, 217, 255, 0.3);
+}
+
+/* Cloak Coins Section */
+.coinsSection {
+    margin-bottom: 5rem;
+}
+
+.sectionTitle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    font-size: 1.75rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 0.75rem;
+}
+
+.coinEmoji {
+    font-size: 2rem;
+}
+
+.sectionSubtitle {
+    text-align: center;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+}
+
+.coinsGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.coinsCard {
+    padding: 1.5rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-xl);
+}
+
+.coinsCard h3 {
+    font-size: 1.125rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.coinsList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+}
+
+.coinsList li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9375rem;
+}
+
+.coinAction {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-secondary);
+}
+
+.coinAmount {
+    font-weight: 600;
+    color: var(--accent-primary);
+}
+
+/* FAQ Section */
+.faqSection {
+    margin-bottom: 5rem;
+}
+
+.faqGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.faqItem {
+    padding: 1.5rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+}
+
+.faqItem h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.faqItem p {
+    font-size: 0.9375rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+/* Enterprise Section */
+.enterpriseCard {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 2.5rem;
+    background: linear-gradient(135deg, rgba(0, 217, 255, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+    border: 1px solid rgba(0, 217, 255, 0.2);
+    border-radius: var(--radius-xl);
+}
+
+.enterpriseContent h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.enterpriseContent p {
+    color: var(--text-secondary);
+    max-width: 500px;
+}
+
+.enterpriseBtn {
+    flex-shrink: 0;
+    padding: 1rem 2rem;
+    background: var(--accent-gradient);
+    color: var(--bg-primary);
+    font-weight: 600;
+    border-radius: var(--radius-full);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.enterpriseBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 217, 255, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .pricingGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .main {
+        padding: 6rem 0 3rem;
+    }
+
+    .pricingGrid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .coinsGrid,
+    .faqGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .enterpriseCard {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .enterpriseContent p {
+        margin: 0 auto;
+    }
+}
