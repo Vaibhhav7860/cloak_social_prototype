@@ -3,6 +3,7 @@
 import { useState, useRef } from 'react';
 import Link from 'next/link';
 import DualRealityViewer from './DualRealityViewer';
+import StressTestArena from './StressTestArena';
 import styles from './RevelationDashboard.module.css';
 
 export default function RevelationDashboard({ originalUrl, protectedUrl, onReset }) {
@@ -221,6 +222,9 @@ export default function RevelationDashboard({ originalUrl, protectedUrl, onReset
 
             {/* Dual Reality Viewer */}
             <DualRealityViewer originalUrl={originalUrl} protectedUrl={protectedUrl} />
+
+            {/* Interactive Stress Test */}
+            <StressTestArena protectedImageUrl={protectedUrl} />
 
             {/* Actions */}
             <div className={styles.actions}>
