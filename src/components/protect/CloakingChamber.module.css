@@ -1,0 +1,310 @@
+.chamber {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2.5rem;
+}
+
+/* Background Glow */
+.glowEffect {
+    position: absolute;
+    inset: -50%;
+    background: radial-gradient(circle at center, rgba(125, 211, 252, 0.08) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+/* Header */
+.header {
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+.portalIcon {
+    width: 64px;
+    height: 72px;
+    margin: 0 auto 1rem;
+    animation: float 3s ease-in-out infinite;
+}
+
+.portalIcon svg {
+    width: 100%;
+    height: 100%;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+.title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    background: var(--shield-active);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.subtitle {
+    font-size: 1rem;
+    color: var(--text-secondary);
+}
+
+/* Drop Zone */
+.dropZone {
+    position: relative;
+    padding: 3rem 2rem;
+    background: var(--glass-bg);
+    border: 2px dashed var(--glass-border);
+    border-radius: var(--radius-2xl);
+    transition:
+        border-color var(--transition-base),
+        background var(--transition-base),
+        transform var(--transition-base);
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.dropZone:hover {
+    border-color: var(--cloak-primary);
+    background: rgba(125, 211, 252, 0.03);
+}
+
+.dropZone.dragging {
+    border-color: var(--cloak-primary);
+    background: rgba(125, 211, 252, 0.05);
+    transform: scale(1.02);
+}
+
+.dropContent {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.uploadIcon {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(125, 211, 252, 0.1);
+    border-radius: var(--radius-xl);
+    color: var(--cloak-primary);
+    margin-bottom: 0.5rem;
+}
+
+.uploadIcon svg {
+    width: 28px;
+    height: 28px;
+}
+
+.dropText {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+}
+
+.dropHighlight {
+    color: var(--cloak-primary);
+    font-weight: 600;
+}
+
+.dropOr {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
+
+.browseBtn {
+    padding: 0.75rem 1.5rem;
+    background: var(--shield-active);
+    background-size: 200% 200%;
+    color: var(--void-deep);
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    animation: gradientShift 4s ease infinite;
+    transition: transform var(--transition-fast), box-shadow var(--transition-base);
+}
+
+.browseBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(125, 211, 252, 0.3);
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.fileHint {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+}
+
+/* Animated Border */
+.animatedBorder {
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    background: conic-gradient(from 0deg,
+            transparent,
+            var(--cloak-primary),
+            var(--cloak-secondary),
+            var(--cloak-pink),
+            transparent);
+    opacity: 0;
+    animation: rotateBorder 4s linear infinite;
+    transition: opacity var(--transition-base);
+    z-index: 0;
+}
+
+.dropZone.dragging .animatedBorder,
+.dropZone:hover .animatedBorder {
+    opacity: 0.3;
+}
+
+@keyframes rotateBorder {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Portal Particles */
+.particles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    opacity: 0;
+}
+
+.particle:nth-child(odd) {
+    background: var(--cloak-primary);
+}
+
+.particle:nth-child(even) {
+    background: var(--cloak-secondary);
+}
+
+.dropZone.dragging .particle {
+    animation: particleRise 2s ease-out infinite;
+    animation-delay: calc(var(--i) * 0.15s);
+}
+
+@keyframes particleRise {
+    0% {
+        bottom: 0;
+        left: calc(10% + var(--i) * 7%);
+        opacity: 0;
+        transform: scale(0.5);
+    }
+
+    20% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    100% {
+        bottom: 100%;
+        left: calc(10% + var(--i) * 7% + 20px);
+        opacity: 0;
+        transform: scale(0.5);
+    }
+}
+
+/* Error Message */
+.error {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding: 0.75rem 1rem;
+    background: var(--danger-bg);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    border-radius: var(--radius-lg);
+    color: var(--reality-ai);
+    font-size: 0.875rem;
+}
+
+.error svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
+/* Trust Signals */
+.trustSignals {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+.trustItem {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+}
+
+.trustItem svg {
+    width: 16px;
+    height: 16px;
+    color: var(--reality-human);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .chamber {
+        padding: 1.5rem;
+    }
+
+    .dropZone {
+        padding: 2rem 1.5rem;
+    }
+
+    .trustSignals {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+    }
+}

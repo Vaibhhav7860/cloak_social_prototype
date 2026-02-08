@@ -1,0 +1,357 @@
+.dashboard {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* Success Header */
+.header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.successIcon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--success-bg);
+    border-radius: 50%;
+    animation: scaleIn 0.5s ease;
+}
+
+@keyframes scaleIn {
+    0% {
+        transform: scale(0);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.successIcon svg {
+    width: 36px;
+    height: 36px;
+    color: var(--reality-human);
+}
+
+.title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    background: var(--shield-active);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.subtitle {
+    font-size: 1rem;
+    color: var(--text-secondary);
+}
+
+/* Metrics */
+.metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.metricCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.25rem;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-xl);
+    text-align: center;
+}
+
+.metricIcon {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.metricValue {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 0.25rem;
+}
+
+.metricNumber {
+    font-size: 1.5rem;
+    font-weight: 700;
+    font-family: var(--font-mono);
+    background: var(--shield-active);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.metricUnit {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin-left: 2px;
+}
+
+.metricLabel {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Gauge Section */
+.gaugeSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding: 2rem;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-xl);
+}
+
+.gauge {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin-bottom: 1rem;
+}
+
+.gauge svg {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.gaugeBg {
+    fill: none;
+    stroke: var(--void-elevated);
+    stroke-width: 8;
+}
+
+.gaugeProgress {
+    fill: none;
+    stroke: url(#gaugeGrad);
+    stroke-width: 8;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 1s ease;
+}
+
+.gaugeValue {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.gaugeNumber {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    font-family: var(--font-mono);
+    background: var(--shield-active);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.gaugeLabel {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.gaugeNote {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    text-align: center;
+    max-width: 400px;
+}
+
+/* Protection Details */
+.details {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-xl);
+}
+
+.detailsTitle {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.detailsList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.detailItem {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+}
+
+.detailItem svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    color: var(--reality-human);
+}
+
+/* Actions */
+.actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.downloadBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1rem 2rem;
+    background: var(--shield-active);
+    background-size: 200% 200%;
+    color: var(--void-deep);
+    font-size: 1.125rem;
+    font-weight: 600;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    animation: gradientShift 4s ease infinite;
+    transition: transform var(--transition-fast), box-shadow var(--transition-base);
+}
+
+.downloadBtn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(125, 211, 252, 0.3);
+}
+
+.downloadBtn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.downloadBtn svg {
+    width: 20px;
+    height: 20px;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    border-top-color: var(--void-deep);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.resetBtn {
+    padding: 1rem 2rem;
+    background: transparent;
+    border: 1px solid var(--glass-border);
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: border-color var(--transition-fast), background var(--transition-fast);
+}
+
+.resetBtn:hover {
+    border-color: var(--cloak-primary);
+    background: rgba(125, 211, 252, 0.05);
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.footerText {
+    font-size: 0.9375rem;
+    color: var(--text-muted);
+}
+
+.upgradeLink {
+    color: var(--cloak-primary);
+    font-weight: 500;
+    transition: color var(--transition-fast);
+}
+
+.upgradeLink:hover {
+    color: var(--cloak-accent);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .metrics {
+        grid-template-columns: 1fr;
+    }
+
+    .metricCard {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 1rem;
+    }
+
+    .metricIcon {
+        order: 1;
+        margin-bottom: 0;
+    }
+
+    .metricValue {
+        order: 2;
+    }
+
+    .metricLabel {
+        order: 3;
+    }
+
+    .gaugeSection {
+        padding: 1.5rem;
+    }
+}

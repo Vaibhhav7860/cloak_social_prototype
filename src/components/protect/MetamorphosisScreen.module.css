@@ -1,0 +1,365 @@
+.screen {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+}
+
+/* Background Effects */
+.bgEffects {
+    position: absolute;
+    inset: -50%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.glowOrb1 {
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    width: 40%;
+    height: 40%;
+    background: radial-gradient(circle, rgba(125, 211, 252, 0.1) 0%, transparent 60%);
+    filter: blur(60px);
+    animation: pulse 3s ease-in-out infinite;
+}
+
+.glowOrb2 {
+    position: absolute;
+    bottom: 20%;
+    right: 20%;
+    width: 40%;
+    height: 40%;
+    background: radial-gradient(circle, rgba(167, 139, 250, 0.1) 0%, transparent 60%);
+    filter: blur(60px);
+    animation: pulse 3s ease-in-out infinite 1.5s;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 0.5;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+}
+
+/* Header */
+.header {
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+.title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    background: var(--shield-active);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.subtitle {
+    font-size: 1rem;
+    color: var(--text-secondary);
+}
+
+/* Image Container */
+.imageContainer {
+    position: relative;
+    margin-bottom: 2rem;
+    z-index: 1;
+}
+
+.imageWrapper {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    background: var(--void-surface);
+    border: 2px solid var(--glass-border);
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Particle Overlay */
+.particleOverlay {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    left: var(--x);
+    top: var(--y);
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--cloak-primary);
+    opacity: 0;
+    animation: particlePulse var(--duration) ease-in-out infinite;
+    animation-delay: var(--delay);
+}
+
+.particle:nth-child(even) {
+    background: var(--cloak-secondary);
+}
+
+@keyframes particlePulse {
+
+    0%,
+    100% {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    50% {
+        opacity: 0.8;
+        transform: scale(1.5);
+    }
+}
+
+/* Scan Line */
+.scanLine {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--cloak-primary), transparent);
+    box-shadow: 0 0 20px var(--cloak-primary);
+    transition: top 0.1s linear;
+}
+
+/* Shield Effect */
+.shieldEffect {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.3);
+    transition: opacity 0.3s ease;
+}
+
+.shieldEffect svg {
+    width: 80px;
+    height: 90px;
+    animation: float 2s ease-in-out infinite;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Progress Section */
+.progressSection {
+    position: relative;
+    z-index: 1;
+}
+
+/* Progress Ring */
+.progressRing {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 1.5rem;
+}
+
+.progressRing svg {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.ringBg {
+    fill: none;
+    stroke: var(--void-elevated);
+    stroke-width: 8;
+}
+
+.ringProgress {
+    fill: none;
+    stroke: url(#progressGradient);
+    stroke-width: 8;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.1s ease;
+}
+
+/* Fallback gradient */
+.ringProgress {
+    stroke: var(--cloak-primary);
+}
+
+.progressValue {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: baseline;
+}
+
+.progressNumber {
+    font-size: 2rem;
+    font-weight: 700;
+    font-family: var(--font-mono);
+    background: var(--shield-active);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.progressPercent {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-left: 2px;
+}
+
+/* Progress Bar */
+.progressBar {
+    height: 6px;
+    background: var(--void-elevated);
+    border-radius: var(--radius-full);
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+}
+
+.progressFill {
+    height: 100%;
+    background: var(--shield-active);
+    border-radius: var(--radius-full);
+    transition: width 0.1s ease;
+    box-shadow: 0 0 10px var(--cloak-glow);
+}
+
+/* Current Step */
+.currentStep {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    padding: 0.75rem 1.5rem;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-full);
+}
+
+.stepIcon {
+    font-size: 1.25rem;
+}
+
+.stepLabel {
+    font-size: 1rem;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+/* Steps List */
+.stepsList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    max-width: 300px;
+    margin: 0 auto 2rem;
+}
+
+.step {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    transition: color var(--transition-fast);
+}
+
+.step.completed {
+    color: var(--reality-human);
+}
+
+.step.active {
+    color: var(--cloak-primary);
+}
+
+.stepDot {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--void-elevated);
+    transition: background var(--transition-fast);
+}
+
+.step.completed .stepDot {
+    background: var(--reality-human);
+}
+
+.step.active .stepDot {
+    background: var(--cloak-primary);
+    box-shadow: 0 0 10px var(--cloak-glow);
+}
+
+.stepDot svg {
+    width: 12px;
+    height: 12px;
+    color: var(--void-deep);
+}
+
+/* Trust Signal */
+.trustSignal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+}
+
+.trustSignal svg {
+    width: 16px;
+    height: 16px;
+    color: var(--reality-human);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .screen {
+        padding: 1.5rem;
+    }
+
+    .imageWrapper {
+        width: 160px;
+        height: 160px;
+    }
+
+    .stepsList {
+        display: none;
+    }
+}

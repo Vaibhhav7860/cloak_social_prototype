@@ -1,0 +1,145 @@
+.button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    overflow: hidden;
+    transition:
+        transform var(--transition-fast),
+        box-shadow var(--transition-base);
+}
+
+.text {
+    position: relative;
+    z-index: 1;
+}
+
+.icon {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Size Variants */
+.sm {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+}
+
+.sm .icon svg {
+    width: 16px;
+    height: 16px;
+}
+
+.md {
+    padding: 0.875rem 1.75rem;
+    font-size: 1rem;
+}
+
+.md .icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+.lg {
+    padding: 1rem 2.25rem;
+    font-size: 1.125rem;
+}
+
+.lg .icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* Primary Variant */
+.primary {
+    background: var(--shield-active);
+    background-size: 200% 200%;
+    color: var(--void-deep);
+    animation: gradientShift 4s ease infinite;
+}
+
+.primary:hover {
+    transform: translateY(-3px);
+    box-shadow:
+        0 10px 30px rgba(125, 211, 252, 0.3),
+        0 0 0 1px rgba(125, 211, 252, 0.3);
+}
+
+.primary:active {
+    transform: translateY(-1px);
+}
+
+/* Shine effect for primary */
+.shine {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.3),
+            transparent);
+    transform: skewX(-20deg);
+    transition: left 0.5s ease;
+}
+
+.primary:hover .shine {
+    left: 120%;
+}
+
+/* Secondary Variant */
+.secondary {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    color: var(--text-primary);
+}
+
+.secondary:hover {
+    border-color: var(--cloak-primary);
+    background: rgba(125, 211, 252, 0.05);
+    box-shadow: var(--shadow-glow-sm);
+    transform: translateY(-2px);
+}
+
+/* Ghost Variant */
+.ghost {
+    background: transparent;
+    color: var(--cloak-primary);
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+.ghost:hover {
+    color: var(--cloak-accent);
+    text-shadow: 0 0 10px var(--cloak-glow);
+}
+
+/* Full Width */
+.fullWidth {
+    width: 100%;
+}
+
+/* Gradient Shift Animation */
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}

@@ -1,0 +1,88 @@
+.card {
+    position: relative;
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+}
+
+/* Padding Variants */
+.padding-sm {
+    padding: var(--space-md);
+}
+
+.padding-md {
+    padding: var(--space-lg);
+}
+
+.padding-lg {
+    padding: var(--space-xl);
+}
+
+.padding-xl {
+    padding: var(--space-2xl);
+}
+
+.padding-none {
+    padding: 0;
+}
+
+/* Content */
+.content {
+    position: relative;
+    z-index: 1;
+}
+
+/* Hover Effect */
+.hover {
+    transition:
+        border-color var(--transition-base),
+        box-shadow var(--transition-base),
+        transform var(--transition-base);
+}
+
+.hover:hover {
+    border-color: var(--glass-border-hover);
+    box-shadow: var(--shadow-glow-sm);
+    transform: translateY(-2px);
+}
+
+/* Glow Effect */
+.glowEffect {
+    position: absolute;
+    inset: -1px;
+    background: var(--accent-gradient);
+    border-radius: inherit;
+    opacity: 0;
+    filter: blur(12px);
+    transition: opacity var(--transition-base);
+    z-index: 0;
+}
+
+.glow:hover .glowEffect {
+    opacity: 0.3;
+}
+
+/* Inner Gradient Border on Hover */
+.card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: var(--accent-gradient);
+    mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    -webkit-mask-composite: xor;
+    opacity: 0;
+    transition: opacity var(--transition-base);
+    pointer-events: none;
+}
+
+.hover:hover::before {
+    opacity: 0.5;
+}

@@ -2,94 +2,125 @@ import Link from 'next/link';
 import styles from './Footer.module.css';
 
 export default function Footer() {
+    const currentYear = new Date().getFullYear();
+
+    const footerLinks = {
+        product: [
+            { label: 'Features', href: '/#features' },
+            { label: 'How It Works', href: '/#how-it-works' },
+            { label: 'Pricing', href: '/pricing' },
+            { label: 'Dashboard', href: '/dashboard' },
+        ],
+        resources: [
+            { label: 'Documentation', href: '/docs' },
+            { label: 'API', href: '/api' },
+            { label: 'Blog', href: '/blog' },
+            { label: 'Support', href: '/support' },
+        ],
+        company: [
+            { label: 'About', href: '/about' },
+            { label: 'Privacy Policy', href: '/privacy' },
+            { label: 'Terms of Service', href: '/terms' },
+            { label: 'Contact', href: '/contact' },
+        ],
+    };
+
     return (
         <footer className={styles.footer}>
-            <div className={`${styles.footerContent} container`}>
-                {/* Main Footer */}
+            <div className="container">
                 <div className={styles.footerGrid}>
                     {/* Brand Column */}
                     <div className={styles.brandColumn}>
                         <Link href="/" className={styles.logo}>
                             <div className={styles.logoIcon}>
-                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <svg viewBox="0 0 32 32" fill="none">
+                                    <defs>
+                                        <linearGradient id="footerLogoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" stopColor="#7dd3fc" />
+                                            <stop offset="50%" stopColor="#a78bfa" />
+                                            <stop offset="100%" stopColor="#f0abfc" />
+                                        </linearGradient>
+                                    </defs>
                                     <path
-                                        d="M12 2L3 7V12C3 17.5 6.8 22.7 12 24C17.2 22.7 21 17.5 21 12V7L12 2Z"
-                                        stroke="url(#footerShieldGradient)"
+                                        d="M16 3L4 9V15C4 23 10 29 16 31C22 29 28 23 28 15V9L16 3Z"
+                                        stroke="url(#footerLogoGrad)"
+                                        strokeWidth="2"
+                                        fill="rgba(125, 211, 252, 0.1)"
+                                    />
+                                    <path
+                                        d="M11 15L14.5 18.5L21 12"
+                                        stroke="url(#footerLogoGrad)"
                                         strokeWidth="2"
                                         strokeLinecap="round"
                                         strokeLinejoin="round"
-                                        fill="url(#footerShieldFill)"
                                     />
-                                    <defs>
-                                        <linearGradient id="footerShieldGradient" x1="3" y1="2" x2="21" y2="24">
-                                            <stop stopColor="#00d9ff" />
-                                            <stop offset="1" stopColor="#8b5cf6" />
-                                        </linearGradient>
-                                        <linearGradient id="footerShieldFill" x1="3" y1="2" x2="21" y2="24">
-                                            <stop stopColor="rgba(0, 217, 255, 0.2)" />
-                                            <stop offset="1" stopColor="rgba(139, 92, 246, 0.2)" />
-                                        </linearGradient>
-                                    </defs>
                                 </svg>
                             </div>
                             <span className={styles.logoText}>
                                 Cloak<span className={styles.logoAccent}>Social</span>
                             </span>
                         </Link>
-                        <p className={styles.brandDescription}>
-                            Protecting personal photos from AI surveillance with invisible, military-grade adversarial technology.
+                        <p className={styles.tagline}>
+                            Invisible protection for your photos.
+                            <br />
+                            Identical to humans, invisible to AI.
                         </p>
                         <div className={styles.socialLinks}>
-                            <a href="#" aria-label="Twitter" className={styles.socialLink}>
-                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg>
+                            <a href="#" className={styles.socialLink} aria-label="Twitter">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                                </svg>
                             </a>
-                            <a href="#" aria-label="LinkedIn" className={styles.socialLink}>
-                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z" /></svg>
+                            <a href="#" className={styles.socialLink} aria-label="GitHub">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                                </svg>
                             </a>
-                            <a href="#" aria-label="GitHub" className={styles.socialLink}>
-                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z" /></svg>
+                            <a href="#" className={styles.socialLink} aria-label="LinkedIn">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                                </svg>
                             </a>
                         </div>
                     </div>
 
                     {/* Links Columns */}
                     <div className={styles.linksColumn}>
-                        <h4>Product</h4>
-                        <ul>
-                            <li><Link href="/protect">Protect Photo</Link></li>
-                            <li><Link href="/pricing">Pricing</Link></li>
-                            <li><Link href="/#features">Features</Link></li>
-                            <li><Link href="/#how-it-works">How It Works</Link></li>
+                        <h4 className={styles.columnTitle}>Product</h4>
+                        <ul className={styles.linksList}>
+                            {footerLinks.product.map((link) => (
+                                <li key={link.href}>
+                                    <Link href={link.href} className={styles.link}>
+                                        {link.label}
+                                    </Link>
+                                </li>
+                            ))}
                         </ul>
                     </div>
 
                     <div className={styles.linksColumn}>
-                        <h4>Resources</h4>
-                        <ul>
-                            <li><a href="#">Blog</a></li>
-                            <li><a href="#">Documentation</a></li>
-                            <li><a href="#">API Reference</a></li>
-                            <li><a href="#">Help Center</a></li>
+                        <h4 className={styles.columnTitle}>Resources</h4>
+                        <ul className={styles.linksList}>
+                            {footerLinks.resources.map((link) => (
+                                <li key={link.href}>
+                                    <Link href={link.href} className={styles.link}>
+                                        {link.label}
+                                    </Link>
+                                </li>
+                            ))}
                         </ul>
                     </div>
 
                     <div className={styles.linksColumn}>
-                        <h4>Company</h4>
-                        <ul>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Careers</a></li>
-                            <li><a href="#">Contact</a></li>
-                            <li><a href="#">Press Kit</a></li>
-                        </ul>
-                    </div>
-
-                    <div className={styles.linksColumn}>
-                        <h4>Legal</h4>
-                        <ul>
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Terms of Service</a></li>
-                            <li><a href="#">Cookie Policy</a></li>
-                            <li><a href="#">GDPR</a></li>
+                        <h4 className={styles.columnTitle}>Company</h4>
+                        <ul className={styles.linksList}>
+                            {footerLinks.company.map((link) => (
+                                <li key={link.href}>
+                                    <Link href={link.href} className={styles.link}>
+                                        {link.label}
+                                    </Link>
+                                </li>
+                            ))}
                         </ul>
                     </div>
                 </div>
@@ -97,13 +128,11 @@ export default function Footer() {
                 {/* Bottom Bar */}
                 <div className={styles.bottomBar}>
                     <p className={styles.copyright}>
-                        © {new Date().getFullYear()} CloakSocial. All rights reserved.
+                        © {currentYear} CloakSocial. All rights reserved.
                     </p>
-                    <div className={styles.trustBadges}>
-                        <span className={styles.badge}>🔒 256-bit Encryption</span>
-                        <span className={styles.badge}>🛡️ No Photo Storage</span>
-                        <span className={styles.badge}>✓ GDPR Compliant</span>
-                    </div>
+                    <p className={styles.disclaimer}>
+                        Your photos are processed locally and never stored on our servers.
+                    </p>
                 </div>
             </div>
         </footer>

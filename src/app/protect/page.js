@@ -1,83 +1,93 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
-import UploadZone from '@/components/protect/UploadZone';
-import ProcessingScreen from '@/components/protect/ProcessingScreen';
-import ResultsDashboard from '@/components/protect/ResultsDashboard';
+import CloakingChamber from '@/components/protect/CloakingChamber';
+import MetamorphosisScreen from '@/components/protect/MetamorphosisScreen';
+import RevelationDashboard from '@/components/protect/RevelationDashboard';
 import styles from './page.module.css';
 
 export default function ProtectPage() {
-    const [stage, setStage] = useState('upload'); // upload, processing, results
-    const [imagePreview, setImagePreview] = useState(null);
+    const [stage, setStage] = useState('upload'); // 'upload', 'processing', 'complete'
+    const [uploadedFile, setUploadedFile] = useState(null);
+    const [imageUrl, setImageUrl] = useState(null);
 
-    const handleImageUpload = (file) => {
-        // Create preview URL
-        const previewUrl = URL.createObjectURL(file);
-        setImagePreview(previewUrl);
+    const handleUpload = useCallback((file) => {
+        setUploadedFile(file);
+        const url = URL.createObjectURL(file);
+        setImageUrl(url);
         setStage('processing');
-    };
+    }, []);
 
-    const handleProcessingComplete = () => {
-        setStage('results');
-    };
+    const handleProcessingComplete = useCallback(() => {
+        setStage('complete');
+    }, []);
 
-    const handleReset = () => {
-        if (imagePreview) {
-            URL.revokeObjectURL(imagePreview);
+    const handleReset = useCallback(() => {
+        if (imageUrl) {
+            URL.revokeObjectURL(imageUrl);
         }
-        setImagePreview(null);
+        setUploadedFile(null);
+        setImageUrl(null);
         setStage('upload');
-    };
+    }, [imageUrl]);
 
     return (
         <>
             <Navbar />
             <main className={styles.main}>
-                <div className="container">
-                    {/* Page Header */}
-                    <div className={styles.header}>
-                        <h1 className={styles.title}>
-                            {stage === 'upload' && 'Protect Your Photo'}
-                            {stage === 'processing' && 'Immunizing...'}
-                            {stage === 'results' && 'Protection Complete'}
-                        </h1>
-                        {stage === 'upload' && (
-                            <p className={styles.subtitle}>
-                                Upload a photo and we&apos;ll make it invisible to AI facial recognition
-                            </p>
-                        )}
+                {/* Background Effects */}
+                <div className={styles.bgEffects}>
+                    <div className={styles.gradientOrb1}></div>
+                    <div className={styles.gradientOrb2}></div>
+                    <div className={styles.gridOverlay}></div>
+                </div>
+
+                <div className={styles.container}>
+                    {/* Stage Indicator */}
+                    <div className={styles.stageIndicator}>
+                        <div className={`${styles.stageStep} ${stage === 'upload' ? styles.active : stage !== 'upload' ? styles.completed : ''}`}>
+                            <span className={styles.stepNumber}>1</span>
+                            <span className={styles.stepLabel}>Upload</span>
+                        </div>
+                        <div className={styles.stepConnector}>
+                            <div className={`${styles.connectorFill} ${stage !== 'upload' ? styles.active : ''}`}></div>
+                        </div>
+                        <div className={`${styles.stageStep} ${stage === 'processing' ? styles.active : stage === 'complete' ? styles.completed : ''}`}>
+                            <span className={styles.stepNumber}>2</span>
+                            <span className={styles.stepLabel}>Cloaking</span>
+                        </div>
+                        <div className={styles.stepConnector}>
+                            <div className={`${styles.connectorFill} ${stage === 'complete' ? styles.active : ''}`}></div>
+                        </div>
+                        <div className={`${styles.stageStep} ${stage === 'complete' ? styles.active : ''}`}>
+                            <span className={styles.stepNumber}>3</span>
+                            <span className={styles.stepLabel}>Protected</span>
+                        </div>
                     </div>
 
-                    {/* Content Area */}
+                    {/* Dynamic Content */}
                     <div className={styles.content}>
                         {stage === 'upload' && (
-                            <UploadZone onImageUpload={handleImageUpload} />
+                            <CloakingChamber onUpload={handleUpload} />
                         )}
 
                         {stage === 'processing' && (
-                            <ProcessingScreen
-                                imagePreview={imagePreview}
+                            <MetamorphosisScreen
+                                imageUrl={imageUrl}
                                 onComplete={handleProcessingComplete}
                             />
                         )}
 
-                        {stage === 'results' && (
-                            <ResultsDashboard
-                                originalImage={imagePreview}
+                        {stage === 'complete' && (
+                            <RevelationDashboard
+                                originalUrl={imageUrl}
+                                protectedUrl={imageUrl}
                                 onReset={handleReset}
                             />
                         )}
                     </div>
-
-                    {/* Free Credits Notice */}
-                    {stage === 'upload' && (
-                        <div className={styles.creditsNotice}>
-                            <span className={styles.coinsIcon}>🪙</span>
-                            <span>You have <strong>5 free Cloak Coins</strong> • 1 coin = 1 protected photo</span>
-                        </div>
-                    )}
                 </div>
             </main>
             <Footer />

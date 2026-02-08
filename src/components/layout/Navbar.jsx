@@ -16,38 +16,39 @@ export default function Navbar() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    const navLinks = [
+        { href: '#features', label: 'Features' },
+        { href: '#how-it-works', label: 'How It Works' },
+        { href: '/pricing', label: 'Pricing' },
+    ];
+
     return (
         <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>
             <nav className={`${styles.nav} container`}>
                 {/* Logo */}
                 <Link href="/" className={styles.logo}>
                     <div className={styles.logoIcon}>
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M12 2L3 7V12C3 17.5 6.8 22.7 12 24C17.2 22.7 21 17.5 21 12V7L12 2Z"
-                                stroke="url(#shieldGradient)"
-                                strokeWidth="2"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                fill="url(#shieldFill)"
-                            />
-                            <path
-                                d="M9 12L11 14L15 10"
-                                stroke="white"
-                                strokeWidth="2"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                            />
+                        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <defs>
-                                <linearGradient id="shieldGradient" x1="3" y1="2" x2="21" y2="24">
-                                    <stop stopColor="#00d9ff" />
-                                    <stop offset="1" stopColor="#8b5cf6" />
-                                </linearGradient>
-                                <linearGradient id="shieldFill" x1="3" y1="2" x2="21" y2="24">
-                                    <stop stopColor="rgba(0, 217, 255, 0.2)" />
-                                    <stop offset="1" stopColor="rgba(139, 92, 246, 0.2)" />
+                                <linearGradient id="navLogoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stopColor="#7dd3fc" />
+                                    <stop offset="50%" stopColor="#a78bfa" />
+                                    <stop offset="100%" stopColor="#f0abfc" />
                                 </linearGradient>
                             </defs>
+                            <path
+                                d="M16 3L4 9V15C4 23 10 29 16 31C22 29 28 23 28 15V9L16 3Z"
+                                stroke="url(#navLogoGrad)"
+                                strokeWidth="2"
+                                fill="rgba(125, 211, 252, 0.1)"
+                            />
+                            <path
+                                d="M11 15L14.5 18.5L21 12"
+                                stroke="url(#navLogoGrad)"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            />
                         </svg>
                     </div>
                     <span className={styles.logoText}>
@@ -56,20 +57,22 @@ export default function Navbar() {
                 </Link>
 
                 {/* Desktop Navigation */}
-                <ul className={styles.navLinks}>
-                    <li><Link href="/#features">Features</Link></li>
-                    <li><Link href="/#how-it-works">How It Works</Link></li>
-                    <li><Link href="/pricing">Pricing</Link></li>
-                </ul>
+                <div className={styles.navLinks}>
+                    {navLinks.map((link) => (
+                        <Link key={link.href} href={link.href} className={styles.navLink}>
+                            {link.label}
+                        </Link>
+                    ))}
+                </div>
 
-                {/* CTA Buttons */}
+                {/* Desktop Actions */}
                 <div className={styles.navActions}>
                     <Link href="/dashboard" className={styles.loginBtn}>
                         Log In
                     </Link>
                     <Link href="/protect" className={styles.ctaBtn}>
-                        <span className={styles.ctaBtnIcon}>🛡️</span>
-                        Protect Photo
+                        <span className={styles.ctaIcon}>🛡️</span>
+                        Cloak Photo
                     </Link>
                 </div>
 
@@ -78,6 +81,7 @@ export default function Navbar() {
                     className={`${styles.mobileMenuBtn} ${isMobileMenuOpen ? styles.open : ''}`}
                     onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                     aria-label="Toggle menu"
+                    aria-expanded={isMobileMenuOpen}
                 >
                     <span></span>
                     <span></span>
@@ -87,15 +91,34 @@ export default function Navbar() {
 
             {/* Mobile Menu */}
             <div className={`${styles.mobileMenu} ${isMobileMenuOpen ? styles.open : ''}`}>
-                <ul className={styles.mobileNavLinks}>
-                    <li><Link href="/#features" onClick={() => setIsMobileMenuOpen(false)}>Features</Link></li>
-                    <li><Link href="/#how-it-works" onClick={() => setIsMobileMenuOpen(false)}>How It Works</Link></li>
-                    <li><Link href="/pricing" onClick={() => setIsMobileMenuOpen(false)}>Pricing</Link></li>
-                    <li><Link href="/dashboard" onClick={() => setIsMobileMenuOpen(false)}>Log In</Link></li>
-                </ul>
-                <Link href="/protect" className={styles.mobileCta} onClick={() => setIsMobileMenuOpen(false)}>
-                    🛡️ Protect Your Photo
-                </Link>
+                <div className={styles.mobileMenuContent}>
+                    {navLinks.map((link) => (
+                        <Link
+                            key={link.href}
+                            href={link.href}
+                            className={styles.mobileNavLink}
+                            onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                            {link.label}
+                        </Link>
+                    ))}
+                    <div className={styles.mobileActions}>
+                        <Link
+                            href="/dashboard"
+                            className={styles.mobileLoginBtn}
+                            onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                            Log In
+                        </Link>
+                        <Link
+                            href="/protect"
+                            className={styles.mobileCta}
+                            onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                            🛡️ Cloak Photo
+                        </Link>
+                    </div>
+                </div>
             </div>
         </header>
     );

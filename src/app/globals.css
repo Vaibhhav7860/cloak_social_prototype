@@ -1,38 +1,71 @@
-/* CloakSocial - Global Styles & Design Tokens */
+/* ========================================
+   CloakSocial v2.0 - Global Styles
+   "Metamorphosis" Design System
+   ======================================== */
 
-/* ============================================
-   CSS CUSTOM PROPERTIES (DESIGN TOKENS)
-   ============================================ */
+/* ----------------------------------------
+   1. Design Tokens - Phantom Spectrum
+   ---------------------------------------- */
 
 :root {
-  /* Colors - Dark Theme with Image Safety feel */
-  --bg-primary: #0a0a0f;
-  --bg-secondary: #12121a;
-  --bg-tertiary: #1a1a24;
-  --bg-glass: rgba(18, 18, 26, 0.8);
-  
-  /* Accent Colors */
-  --accent-primary: #00d9ff;
-  --accent-secondary: #8b5cf6;
-  --accent-gradient: linear-gradient(135deg, #00d9ff 0%, #8b5cf6 100%);
-  --accent-glow: 0 0 30px rgba(0, 217, 255, 0.3);
-  
-  /* Status Colors */
+  /* Primary: Deep Void (Invisibility) */
+  --void-deepest: #050508;
+  --void-deep: #0a0a10;
+  --void-surface: #111118;
+  --void-elevated: #1a1a24;
+  --void-lighter: #242432;
+
+  /* Legacy mapping for compatibility */
+  --bg-primary: var(--void-deep);
+  --bg-secondary: var(--void-surface);
+  --bg-tertiary: var(--void-elevated);
+
+  /* Cloak: Ethereal Protection Colors */
+  --cloak-primary: #7dd3fc;
+  --cloak-secondary: #a78bfa;
+  --cloak-accent: #22d3ee;
+  --cloak-pink: #f0abfc;
+  --cloak-glow: rgba(125, 211, 252, 0.4);
+
+  /* Legacy mapping */
+  --accent-primary: var(--cloak-primary);
+  --accent-secondary: var(--cloak-secondary);
+
+  /* Gradients */
+  --shield-active: linear-gradient(135deg, #7dd3fc 0%, #a78bfa 50%, #f0abfc 100%);
+  --shield-pulse: linear-gradient(135deg, #22d3ee, #8b5cf6, #d946ef);
+  --accent-gradient: linear-gradient(135deg, var(--cloak-primary) 0%, var(--cloak-secondary) 100%);
+
+  /* Dual Reality Colors */
+  --reality-human: #10b981;
+  --reality-ai: #ef4444;
+  --reality-transform: #f59e0b;
+
+  /* Semantic Colors */
   --success: #10b981;
   --success-bg: rgba(16, 185, 129, 0.1);
   --danger: #ef4444;
   --danger-bg: rgba(239, 68, 68, 0.1);
   --warning: #f59e0b;
-  
+  --warning-bg: rgba(245, 158, 11, 0.1);
+
   /* Text Colors */
   --text-primary: #ffffff;
-  --text-secondary: #94a3b8;
+  --text-secondary: #cbd5e1;
   --text-muted: #64748b;
-  
-  /* Border & Surface */
-  --border-color: rgba(148, 163, 184, 0.1);
-  --border-glow: rgba(0, 217, 255, 0.3);
-  
+  --text-accent: var(--cloak-primary);
+
+  /* Glass Effects */
+  --glass-bg: rgba(17, 17, 24, 0.75);
+  --glass-bg-light: rgba(26, 26, 36, 0.6);
+  --glass-border: rgba(125, 211, 252, 0.12);
+  --glass-border-hover: rgba(125, 211, 252, 0.25);
+  --glass-blur: 20px;
+
+  /* Border */
+  --border-color: rgba(255, 255, 255, 0.06);
+  --border-color-light: rgba(255, 255, 255, 0.1);
+
   /* Spacing */
   --space-xs: 0.25rem;
   --space-sm: 0.5rem;
@@ -41,32 +74,40 @@
   --space-xl: 2rem;
   --space-2xl: 3rem;
   --space-3xl: 4rem;
-  
+
+  /* Container */
+  --container-max: 1280px;
+  --container-padding: 1.5rem;
+
   /* Border Radius */
   --radius-sm: 0.375rem;
   --radius-md: 0.5rem;
   --radius-lg: 0.75rem;
   --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
   --radius-full: 9999px;
-  
+
   /* Transitions */
   --transition-fast: 150ms ease;
   --transition-base: 250ms ease;
   --transition-slow: 400ms ease;
-  
-  /* Container */
-  --container-max: 1200px;
-  --container-padding: 1.5rem;
-  
-  /* Z-Index Scale */
-  --z-dropdown: 100;
-  --z-modal: 200;
-  --z-toast: 300;
+  --transition-spring: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Shadows */
+  --shadow-glow-sm: 0 0 15px rgba(125, 211, 252, 0.15);
+  --shadow-glow-md: 0 0 30px rgba(125, 211, 252, 0.2);
+  --shadow-glow-lg: 0 0 50px rgba(125, 211, 252, 0.3);
+  --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.3);
+
+  /* Font */
+  --font-sans: var(--font-inter), 'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-space), 'Space Grotesk', var(--font-sans);
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 }
 
-/* ============================================
-   RESET & BASE STYLES
-   ============================================ */
+/* ----------------------------------------
+   2. Base Styles
+   ---------------------------------------- */
 
 *,
 *::before,
@@ -77,30 +118,29 @@
 }
 
 html {
+  font-size: 16px;
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background: var(--bg-primary);
+  font-family: var(--font-sans);
+  background: var(--void-deepest);
   color: var(--text-primary);
   line-height: 1.6;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
-/* Background gradient overlay */
+/* Subtle background texture */
 body::before {
   content: '';
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: 
-    radial-gradient(ellipse at 20% 20%, rgba(0, 217, 255, 0.05) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 80%, rgba(139, 92, 246, 0.05) 0%, transparent 50%);
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 20%, rgba(125, 211, 252, 0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(167, 139, 250, 0.03) 0%, transparent 50%);
   pointer-events: none;
   z-index: -1;
 }
@@ -117,45 +157,21 @@ button {
   background: none;
 }
 
-img {
+img,
+video {
   max-width: 100%;
   height: auto;
   display: block;
 }
 
-ul, ol {
+ul,
+ol {
   list-style: none;
 }
 
-/* ============================================
-   TYPOGRAPHY
-   ============================================ */
-
-h1, h2, h3, h4, h5, h6 {
-  font-weight: 700;
-  line-height: 1.2;
-  color: var(--text-primary);
-}
-
-h1 { font-size: clamp(2rem, 5vw, 3.5rem); }
-h2 { font-size: clamp(1.5rem, 4vw, 2.5rem); }
-h3 { font-size: clamp(1.25rem, 3vw, 1.75rem); }
-h4 { font-size: 1.25rem; }
-
-p {
-  color: var(--text-secondary);
-}
-
-.text-gradient {
-  background: var(--accent-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* ============================================
-   UTILITY CLASSES
-   ============================================ */
+/* ----------------------------------------
+   3. Utility Classes
+   ---------------------------------------- */
 
 .container {
   max-width: var(--container-max);
@@ -167,13 +183,41 @@ p {
   padding: var(--space-3xl) 0;
 }
 
-.glass-card {
-  background: var(--bg-glass);
-  backdrop-filter: blur(12px);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-xl);
+/* Text Utilities */
+.text-gradient {
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
+.text-gradient-shield {
+  background: var(--shield-active);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-glow {
+  text-shadow: 0 0 20px var(--cloak-glow);
+}
+
+/* Glass Card */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  transition: border-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+.glass-card:hover {
+  border-color: var(--glass-border-hover);
+  box-shadow: var(--shadow-glow-sm);
+}
+
+/* Glow Effects */
 .glow-border {
   position: relative;
 }
@@ -184,99 +228,165 @@ p {
   inset: -1px;
   background: var(--accent-gradient);
   border-radius: inherit;
-  z-index: -1;
   opacity: 0;
   transition: opacity var(--transition-base);
+  z-index: -1;
+  filter: blur(8px);
 }
 
 .glow-border:hover::before {
-  opacity: 1;
+  opacity: 0.5;
 }
 
-/* ============================================
-   ANIMATIONS
-   ============================================ */
+/* ----------------------------------------
+   4. Animation Keyframes
+   ---------------------------------------- */
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-15px);
+  }
 }
 
 @keyframes pulse {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.05); opacity: 0.8; }
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes pulseGlow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(125, 211, 252, 0.2);
+  }
+
+  50% {
+    box-shadow: 0 0 40px rgba(125, 211, 252, 0.4);
+  }
 }
 
 @keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
-@keyframes glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(0, 217, 255, 0.3); }
-  50% { box-shadow: 0 0 40px rgba(0, 217, 255, 0.5); }
-}
-
-.animate-fadeIn {
-  animation: fadeIn 0.6s ease forwards;
-}
-
-.animate-float {
-  animation: float 3s ease-in-out infinite;
-}
-
-.animate-pulse {
-  animation: pulse 2s ease-in-out infinite;
-}
-
-.animate-glow {
-  animation: glow 2s ease-in-out infinite;
-}
-
-/* Staggered animation delays */
-.delay-1 { animation-delay: 0.1s; }
-.delay-2 { animation-delay: 0.2s; }
-.delay-3 { animation-delay: 0.3s; }
-.delay-4 { animation-delay: 0.4s; }
-.delay-5 { animation-delay: 0.5s; }
-
-/* ============================================
-   RESPONSIVE UTILITIES
-   ============================================ */
-
-@media (max-width: 768px) {
-  :root {
-    --container-padding: 1rem;
-    --space-3xl: 2.5rem;
+  0% {
+    background-position: -200% center;
   }
-  
-  .section {
-    padding: var(--space-2xl) 0;
+
+  100% {
+    background-position: 200% center;
   }
 }
 
-/* Hide on mobile */
-@media (max-width: 768px) {
-  .hide-mobile { display: none !important; }
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
-/* Hide on desktop */
-@media (min-width: 769px) {
-  .hide-desktop { display: none !important; }
+@keyframes scanLine {
+  0% {
+    top: -5%;
+  }
+
+  100% {
+    top: 105%;
+  }
 }
 
-/* ============================================
-   SCROLLBAR STYLING
-   ============================================ */
+@keyframes particleFloat {
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.6;
+  }
+
+  25% {
+    transform: translate(10px, -20px) scale(1.1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: translate(-5px, -40px) scale(0.9);
+    opacity: 0.8;
+  }
+
+  75% {
+    transform: translate(-15px, -20px) scale(1.05);
+    opacity: 1;
+  }
+}
+
+@keyframes breathe {
+
+  0%,
+  100% {
+    transform: scale(1);
+    border-color: var(--glass-border);
+  }
+
+  50% {
+    transform: scale(1.01);
+    border-color: var(--glass-border-hover);
+  }
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* ----------------------------------------
+   5. Scrollbar Styling
+   ---------------------------------------- */
 
 ::-webkit-scrollbar {
   width: 8px;
@@ -284,32 +394,58 @@ p {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--bg-secondary);
+  background: var(--void-deep);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--text-muted);
+  background: var(--void-elevated);
   border-radius: var(--radius-full);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--text-secondary);
+  background: var(--void-lighter);
 }
 
-/* ============================================
-   FOCUS STYLES
-   ============================================ */
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--void-elevated) var(--void-deep);
+}
+
+/* ----------------------------------------
+   6. Selection Styling
+   ---------------------------------------- */
+
+::selection {
+  background: rgba(125, 211, 252, 0.3);
+  color: var(--text-primary);
+}
+
+/* ----------------------------------------
+   7. Focus Styles
+   ---------------------------------------- */
 
 :focus-visible {
-  outline: 2px solid var(--accent-primary);
+  outline: 2px solid var(--cloak-primary);
   outline-offset: 2px;
 }
 
-/* ============================================
-   SELECTION STYLES
-   ============================================ */
+/* ----------------------------------------
+   8. Responsive Container
+   ---------------------------------------- */
 
-::selection {
-  background: rgba(0, 217, 255, 0.3);
-  color: var(--text-primary);
+@media (max-width: 768px) {
+  :root {
+    --container-padding: 1rem;
+  }
+
+  .section {
+    padding: var(--space-2xl) 0;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 15px;
+  }
 }

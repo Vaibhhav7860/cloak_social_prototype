@@ -1,0 +1,314 @@
+.viewer {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.viewToggle {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.toggleBtn {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    background: var(--void-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.toggleBtn:hover {
+    color: var(--text-primary);
+    border-color: var(--glass-border-hover);
+}
+
+.toggleBtn.active {
+    color: var(--void-deep);
+    background: var(--cloak-primary);
+    border-color: var(--cloak-primary);
+}
+
+/* Comparison Container */
+.comparisonContainer {
+    position: relative;
+    height: 320px;
+    cursor: ew-resize;
+    user-select: none;
+    overflow: hidden;
+}
+
+/* View Panels */
+.viewPanel {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.humanPanel {
+    z-index: 1;
+}
+
+.aiPanel {
+    z-index: 2;
+    transition: clip-path 0.15s ease;
+}
+
+/* Image Container */
+.imageContainer {
+    flex: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.humanPanel .imageContainer {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.03), transparent);
+}
+
+.aiPanel .imageContainer {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.03), transparent);
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 1rem;
+}
+
+.placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 2rem;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+}
+
+.placeholderIcon {
+    font-size: 2rem;
+}
+
+/* AI Overlay */
+.aiOverlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(239, 68, 68, 0.1);
+}
+
+.scanLines {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(0deg,
+            transparent,
+            transparent 2px,
+            rgba(239, 68, 68, 0.05) 2px,
+            rgba(239, 68, 68, 0.05) 4px);
+    animation: scanMove 3s linear infinite;
+}
+
+@keyframes scanMove {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 0 20px;
+    }
+}
+
+.noiseEffect {
+    position: absolute;
+    inset: 0;
+    opacity: 0.15;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+.errorBox {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1.5rem 2rem;
+    background: var(--glass-bg);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    border-radius: var(--radius-lg);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.02);
+    }
+}
+
+.errorBox svg {
+    width: 32px;
+    height: 32px;
+    color: var(--reality-ai);
+}
+
+.errorBox span {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--reality-ai);
+}
+
+/* View Indicator */
+.viewIndicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    background: var(--void-surface);
+    border-top: 1px solid var(--border-color);
+}
+
+.indicatorDot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.indicatorText {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+/* Slider Handle */
+.sliderHandle {
+    position: absolute;
+    top: 0;
+    bottom: 36px;
+    width: 4px;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+.handleLine {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    background: var(--shield-active);
+    transform: translateX(-50%);
+    box-shadow: 0 0 10px var(--cloak-glow);
+}
+
+.handleGrip {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 36px;
+    height: 36px;
+    background: var(--void-surface);
+    border: 2px solid var(--cloak-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.875rem;
+    color: var(--cloak-primary);
+    box-shadow: 0 0 15px var(--cloak-glow);
+    cursor: ew-resize;
+}
+
+/* Labels */
+.labels {
+    position: absolute;
+    top: 1rem;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1rem;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.label {
+    padding: 0.375rem 0.75rem;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.humanLabel {
+    color: var(--reality-human);
+}
+
+.aiLabel {
+    color: var(--reality-ai);
+}
+
+/* Info Text */
+.infoText {
+    text-align: center;
+    padding: 0.75rem;
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border-color);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .header {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .comparisonContainer {
+        height: 260px;
+    }
+
+    .viewToggle {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .toggleBtn {
+        flex: 1;
+        text-align: center;
+    }
+}
